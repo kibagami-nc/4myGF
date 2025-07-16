@@ -1,9 +1,10 @@
 const emojis = ["💖", "😘", "😍", "💖", "💗", "💘", "💙"];
 
 const photos = [
-  'Img/photo1.jng',
+  'Img/photo1.jpg',
   'Img/photo2.jpg',
-  'Img/photo3.jng',
+  'Img/photo3.jpg',
+  'Img/photo4.jpg'
 ];
 
 function createHeart() {
@@ -40,10 +41,8 @@ function createPhoto() {
   }, 6000);
 }
 
-// Cœurs toutes les 200 ms
 setInterval(createHeart, 200);
 
-// Photos toutes les 4 à 7 secondes
 setInterval(() => {
   createPhoto();
-}, 4000 + Math.random() * 3000);
+}, 2000 + Math.random());
