@@ -45,4 +45,4 @@ setInterval(createHeart, 200);
 
 setInterval(() => {
   createPhoto();
-}, 2000 + Math.random());
+}, 800 + Math.random());
