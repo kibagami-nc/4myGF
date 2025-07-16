@@ -1,9 +1,9 @@
 const emojis = ["💖", "😘", "😍", "💖", "💗", "💘", "💙"];
 
 const photos = [
-  'Img/photo1.png',
+  'Img/photo1.jng',
   'Img/photo2.jpg',
-  'Img/photo3.png',
+  'Img/photo3.jng',
 ];
 
 function createHeart() {
