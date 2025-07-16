@@ -7,6 +7,12 @@ const photos = [
   'Img/photo4.jpg'
 ];
 
+let lastHeartTime = 0;
+let lastPhotoTime = 0;
+
+const heartInterval = 300;   // ms entre chaque cœur (≈3.3 cœurs/s)
+const photoInterval = 1500;  // ms entre chaque photo (≈0.66 photo/s)
+
 function createHeart() {
   const heart = document.createElement('div');
   heart.classList.add('coeur');
@@ -28,8 +34,11 @@ function createPhoto() {
   photo.classList.add('coeur');
   photo.src = photos[Math.floor(Math.random() * photos.length)];
 
-  // Propriétés d’animation similaires aux cœurs
-  photo.style.left = Math.random() * 100 + "vw";
+  // Position horizontale centrée entre 35vw et 65vw
+  const minLeft = 35; // en vw
+  const maxLeft = 65;
+  photo.style.left = (minLeft + Math.random() * (maxLeft - minLeft)) + "vw";
+
   photo.style.animationDuration = (3 + Math.random() * 3) + "s";
   photo.style.width = (50 + Math.random() * 100) + "px";
   photo.style.pointerEvents = 'none';
@@ -41,8 +50,19 @@ function createPhoto() {
   }, 6000);
 }
 
-setInterval(createHeart, 200);
 
-setInterval(() => {
-  createPhoto();
-}, 800 + Math.random());
+function animate(time = 0) {
+  if (time - lastHeartTime > heartInterval) {
+    createHeart();
+    lastHeartTime = time;
+  }
+
+  if (time - lastPhotoTime > photoInterval) {
+    createPhoto();
+    lastPhotoTime = time;
+  }
+
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
